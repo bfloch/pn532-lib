@@ -47,8 +47,8 @@
  * Reset and Log implements
  **************************************************************************/
 int PN532_Reset(void) {
-    gpio_put(_RESET_PIN, HIGH);
-    sleep_ms(100);
+    //gpio_put(_RESET_PIN, HIGH);
+    //sleep_ms(100);
     gpio_put(_RESET_PIN, LOW);
     sleep_ms(500);
     gpio_put(_RESET_PIN, HIGH);
@@ -57,9 +57,9 @@ int PN532_Reset(void) {
 }
 
 void PN532_Log(const char* log) {
-    printf(log);
-    printf("\r\n");
+    printf("# %s\r\n", log);
 }
+
 /**************************************************************************
  * End: Reset and Log implements
  **************************************************************************/
@@ -144,8 +144,8 @@ void PN532_I2C_Init(PN532* pn532) {
     gpio_set_dir(_REQ_PIN, GPIO_OUT);
     gpio_set_dir(_RESET_PIN, GPIO_OUT);
 
-    gpio_pull_down(_RESET_PIN);
-    gpio_pull_up(_REQ_PIN);
+    gpio_pull_up(_RESET_PIN);
+    gpio_pull_down(_REQ_PIN);
 
     // init the pn532 functions
     pn532->reset = PN532_Reset;
